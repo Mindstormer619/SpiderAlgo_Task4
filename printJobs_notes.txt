@@ -1,0 +1,45 @@
+How does this work??
+
+I need to put in some rules to order the print.
+
+1. As many urgent prints as possible have to come out within 5 minutes of timestamp
+2. At a particular timestamp any number of prints may be given
+3. If uPrint is not doable then it's basically a normal print as money is refunded.
+4. Only 1 job can be done at a time. And any job must be pushed to completion. So the printer must decide which job is started BEFORE the job is begun to execute.
+5. Earlier jobs must ideally be started before later jobs. This is especially true in case of nPrints.
+
+First take in all jobs
+In order of timeline
+Pass to function?
+
+Consider all incomplete jobs with time till t
+Do urgent job with least time required?
+
+(curTime + duration) <= (timeStamp + 5) for any urgent job worth its cash being executed at curTime
+
+Check BEFORE every execution for valid and invalid urgent prints
+Remove the invalid ones to the normal print division (screw those guys)
+
+cout<<"Refund: "<<(incomp.back())->jobName<<"\tPages: "
+						<<(incomp.back())->pNumber<<endl;
+					(incomp.back())->urgent = false;
+
+PSECUDOCODE
+
+take all inputs into vector<printJob> jobList
+t=0
+lastTime = -1
+jobsExecd = 0
+create vector<*printJob> incomp
+while(jobsExecd < joblist.size()) { //keep it up till all jobs processed
+	set uIndex and nIndex to -1
+	push in jobs into incomp where lastTime < timestamp <= t
+		while job pushed in, check for urgent status
+			if yes, check if duration < uMintime, if yes, hit the uIndex onto this
+			if no, check if duration < nMintime, if yes, hit nIndex onto this
+	if uIndex has value, exec & erase, dont forget to increment jobsExecd and change lastTime to t, change t to t+d, continue
+	else //if uIndex has -ve sentinel. 
+		exec the nIndex and erase, increment jobsExecd, lastTime <- t, t+=d, continue
+	if (incomp is empty) 
+		//no jobs doing at this time
+		lastTime=t, t++ and continue
