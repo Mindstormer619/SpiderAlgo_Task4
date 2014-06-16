@@ -23,6 +23,14 @@ int main() {
 	//int lastTime = -1;
 	int jobsExecd = 0;
 	//introductory cout statements
+	cout<<"Welcome to the NITT Printer Shop.\n"
+		<<"We have normal print (free) and urgent print (50 rupees)\n\n"
+		<<"Please enter timestamps in nondescending order to get\n"
+		<<"expected results. Incorrectly typecasted values may cause\n"
+		<<"unexpected behavior as the program does not validate input\n\n"
+		<<"The program is configured to maximize profits for any given\n"
+		<<"time point without knowing future job inputs.\n\n"
+		<<"Enter a negative timestamp to stop inputting values.\n";
 	while(true) {
 		cout<<"Enter timestamp: ";
 		getline(cin, input);
